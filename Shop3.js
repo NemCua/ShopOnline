@@ -359,7 +359,7 @@ function backhome() {
 }
 Domquery("#account").addEventListener("click", () => {
     if (isHaveAnAccount === false) {
-        let boxIsAccount = document.createElement("div");
+        let boxIsAccount  = document.createElement("div");
         boxIsAccount.id = "boxIsAccount";
         Domquery("body").appendChild(boxIsAccount)
         boxIsAccount.innerHTML = `
