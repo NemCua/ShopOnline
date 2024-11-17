@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sản phẩm</title>
+    <style>
+        .product {
+            margin-bottom: 10px;
+        }
+        .product span {
+            margin-right: 10px;
+        }
+        .btn-delete {
+            cursor: pointer;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Danh sách Sản phẩm</h1>
+    <div id="product-list"></div>
+
+    <script>
+        // Lớp Product
+        class Product {
+            constructor(name, price) {
+                this.name = name;
+                this.price = price;
+            }
+
+            render() {
+                // Tạo phần tử HTML cho sản phẩm
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('product');
+                
+                // Thêm tên và giá sản phẩm
+                productDiv.innerHTML = `
+                    <span>${this.name} - ${this.price} VNĐ</span>
+                    <span class="btn-delete">Xóa</span>
+                `;
+                
+                // Đưa nút xóa vào sự kiện
+                productDiv.querySelector('.btn-delete').addEventListener('click', () => {
+                    ProductManager.removeProduct(this);
+                });
+
+                return productDiv;
+            }
+        }
+
+        // Lớp ProductManager
+        class ProductManager {
+            constructor() {
+                this.products = [];
+            }
+
+            // Thêm sản phẩm vào danh sách
+            addProduct(product) {
+                this.products.push(product);
+                this.render();
+            }
+
+            // Xóa sản phẩm khỏi danh sách
+            static removeProduct(productToRemove) {
+                const index = productManager.products.indexOf(productToRemove);
+                if (index !== -1) {
+                    productManager.products.splice(index, 1);
+                    productManager.render();
+                }
+            }
+
+            // Hiển thị danh sách sản phẩm
+            render() {
+                const productListDiv = document.getElementById('product-list');
+                productListDiv.innerHTML = '';  // Xóa danh sách cũ
+
+                this.products.forEach(product => {
+                    productListDiv.appendChild(product.render());
+                });
+            }
+        }
+
+        // Tạo các đối tượng sản phẩm
+        const productManager = new ProductManager();
+        const product1 = new Product('Laptop', 15000000);
+        const product2 = new Product('Điện thoại', 5000000);
+        const product3 = new Product('Tai nghe', 800000);
+
+        // Thêm sản phẩm vào quản lý
+        productManager.addProduct(product1);
+        productManager.addProduct(product2);
+        productManager.addProduct(product3);
+    </script>
+</body>
+</html>

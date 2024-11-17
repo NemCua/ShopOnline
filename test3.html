@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+
+// Ví dụ: Tạo chuỗi ngẫu nhiên dài 10 ký tự
+function getRandomUppercaseLetter() {
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    return letters.charAt(Math.floor(Math.random() * letters.length));
+}
+
+function getRandomNumber() {
+    return Math.floor(Math.random() * 10);
+}
+
+function generateRandomString() {
+    let result = "";
+    
+    // Thêm 3 chữ cái viết hoa ngẫu nhiên
+    for (let i = 0; i < 3; i++) {
+        result += getRandomUppercaseLetter();
+    }
+    
+    // Thêm 3 số ngẫu nhiên
+    for (let i = 0; i < 3; i++) {
+        result += getRandomNumber();
+    }
+    
+    // Thêm dấu '-'
+    result += "-";
+    
+    // Thêm 3 số ngẫu nhiên tiếp theo
+    for (let i = 0; i < 3; i++) {
+        result += getRandomNumber();
+    }
+    
+    // Thêm dấu '-'
+    result += "-";
+    
+    // Thêm 2 số ngẫu nhiên cuối cùng
+    for (let i = 0; i < 2; i++) {
+        result += getRandomNumber();
+    }
+    
+    return result;
+}
+
+// Ví dụ: Tạo chuỗi ngẫu nhiên
+console.log(generateRandomString());
+
+    </script>
+</body>
+</html>
